@@ -1,0 +1,133 @@
+{% extends 'navbar.html' %}
+
+{% block content %}
+{% load static %}
+{% load minus_tags %}
+{% load TotalAdd_tags %}
+     <!-- Begin Page Content -->
+     <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="bg-gradient-primary" style="border-radius: 1rem; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+            <h1 class="h3 mb-2 text-white text-center">Anual Admission Fees </h1>
+            <p class="mb-4"></a></p>
+        </div>
+      
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <!-- <div class="row">
+              <h6 class="m-0 font-weight-bold text-primary text-center">Total Paid</h6>
+              <h6 class="m-0 font-weight-bold text-primary text-center">Total Paid</h6>
+            </div> -->
+
+
+            <table class="table table-bordered">
+              <thead class="text-center">
+                <th>Total Paid</th>
+                <th>Total Due</th>
+              </thead>
+              <tbody class="text-center">
+                <tr>
+                  <td>{{TotalPaid}}</td>
+                  <td>{{monthlydue}}</td>
+                </tr>
+              </tbody>
+            </table>
+
+
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <div  id="showSearchedValue"> 
+          
+              </div>
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>Student ID</th>
+                    <th>Payment Date</th>
+                    <th>Student Name</th>
+                    <th>Class</th>
+                    <th>Section</th>
+                    <th>Fees Type</th>
+                    <th>Special</th>
+                    <th>Paid</th>
+                    <th>Due</th>
+                    
+                  </tr>
+                </thead>
+
+               
+
+                <tbody >
+                   
+                    
+
+                    {% for a in MonthlyFees %}
+
+                          <tr>
+                              <td>{{a.StudentId}}</td>
+                              <td>{{a.MonthlyDate}}</td>
+                              <td>{{a.StudentName}}</td>
+                              <td>{{a.Class}}</td>
+                              <td>{{a.Section}}</td>
+                              <td>{{a.FeesType}}</td>
+                              <td>{{a.Special}}</td>
+                              <td>{{a.Ammount}}</td>
+                              <td>{{a.Ammount|subtract:a.Special}}</td>
+                              
+                          </tr>
+                    {% endfor %}
+                      
+                </tbody>
+              </table>
+              
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- /.container-fluid -->
+
+      
+
+    </div>
+    <!-- End of Main Content -->
+
+   
+
+
+    
+
+      
+<script>
+ $(document).ready(function(){   
+      $("#search").keyup(function(){
+        
+        event.preventDefault();
+
+        var searchvalue =  $('#search').val()
+        if(searchvalue.length != 0){
+            $.ajax({
+              method:"POST",
+              url:"SearchMonthlyFeesData",
+              enctype : "multipart/form-data",
+              data:{searchvalue:searchvalue,csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()},
+              success:function(response){
+                $('#showSearchedValue').html(response)
+                $('#dataTable').hide()
+              }
+            });
+        }else{
+          $('#showSearchedValue').empty()
+          $('#dataTable').show()
+        }
+            
+
+        });
+    }); 
+  </script>
+
+{% endblock %}

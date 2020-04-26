@@ -1,0 +1,79 @@
+{% extends 'CustomerDashBoard/CustomerDashBoard.html' %}
+{% block content %}
+<div class="container">
+          
+          <div class="row">
+            <h1 class="text-left">Offered Courses</h1>
+            <div class="col-sm-6 col-md-6 ">
+              <ul>
+                {% for c in course %}
+              <!-- <p id="{{object.slug}}">{{object.title}}</p> -->
+              <li>
+                  <a href="{{c.get_absolute_url}}" >{{c.title}}</a>
+              </li>
+              
+              <!-- <p>
+                  <a id="{{object.slug}}" class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                      {{object.title}}
+                  </a>
+                </p> -->
+
+
+                <!-- <div id="accordion" class="col-6">
+                  <div class="card">
+                    <div class="card-header" >
+                      <h5 class="mb-0">
+                        <button id="{{object.slug}}" class="btn btn-link" data-toggle="collapse" data-target="#{{object.title}}" >
+                          {{object.title}}
+                        </button>
+                      </h5>
+                    </div>
+                
+                    <div id="{{object.title}}" class="collapse" >
+                      <div class="card-body">
+                        
+                      </div>
+                    </div>
+                  </div>
+                  </div> -->
+
+          
+
+                {% endfor %}
+              </ul>
+              
+            </div>
+          </div>
+         
+</div>
+    
+{% endblock content %}
+<!-- <div id="SaveRooms"></div> -->
+
+
+
+
+
+<!--     
+
+<script>
+    $(document).ready(function(){
+        var urls = {
+            slug : '{{object.get_absolute_url}}',
+            title:'{{object.slug}}',
+            t:'{{object.title}}',
+        }
+       
+        $("#"+urls.title).click(function(){
+           
+            
+            $.ajax({
+                url:urls.slug,
+                success:function(response){
+                    $('#'+urls.t).html(response)
+                    console.log(urls.t)
+                }
+            })
+        });
+    });
+</script> -->

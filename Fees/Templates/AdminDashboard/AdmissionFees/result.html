@@ -1,0 +1,53 @@
+{% load minus_tags %}
+    <table class="table table-bordered" width="100%" cellspacing="0">
+        <thead>
+            <th>Student ID</th>
+            <th>Admission Date</th>
+            <th>Student Name</th>
+            {% if SearchedAdmissionFees %}
+                <th>Date of Birth</th>
+                <th>Father Name</th>
+                <th>Mother Name</th>
+                <th>Phone Number</th>
+            {% endif %}
+            <th>Class</th>
+            <th>Section</th>
+            <th>Fees Type</th>
+            <th>Special</th>
+            <th>Paid</th>
+            <th>Due</th>       
+        </thead>
+        <tbody>
+            {% if SearchedAdmissionFees %}
+                    {% for SearchedAdmissionFee in SearchedAdmissionFees%}
+                        
+                        <tr>
+                            <td>{{SearchedAdmissionFee.StudentId}}</td>
+                            <td>{{SearchedAdmissionFee.AdmissionDate}}</td>
+                            <td>{{SearchedAdmissionFee.StudentName}}</td>
+                            <td>{{SearchedAdmissionFee.DateOfBirth}}</td>
+                            <td>{{SearchedAdmissionFee.FatherName}}</td>
+                            <td>{{SearchedAdmissionFee.MotherName}}</td>
+                            <td>{{SearchedAdmissionFee.Phone}}</td>
+                            <td>{{SearchedAdmissionFee.Class}}</td>
+                            <td>{{SearchedAdmissionFee.Section}}</td>
+                            <td>{{SearchedAdmissionFee.FeesType}}</td>
+                            <td>{{SearchedAdmissionFee.Special}}</td>
+                            <td>{{SearchedAdmissionFee.Ammount}}</td>
+                            <td>{{SearchedAdmissionFee.Ammount|subtract:SearchedAdmissionFee.Special}}</td>   
+                        </tr>
+                    
+                    {% endfor %}
+                {%else %}
+                    <tr >
+                        <td colspan="13" class="text-center text-danger">No data found</td>
+                    </tr>
+                    
+            {%endif%}
+
+         
+            
+        </tbody>
+    </table>
+
+

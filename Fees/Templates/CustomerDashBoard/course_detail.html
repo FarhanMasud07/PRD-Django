@@ -1,0 +1,59 @@
+{% extends 'CustomerDashBoard/CustomerDashBoard.html' %}
+    {% block post_detail_link %}
+    {% if course is not None %}
+        <li><a href="{{course.get_absolute_url}}" style="color: white;">{{course.title}}</a></li>
+       
+    {% endif %}
+    {% endblock %}
+{% block content %}
+    <!-- {{object.title}} -->
+   
+  <div class="container">
+      <div class="row">
+          <div class="col-sm-4 col-md-4">
+              <ol>
+                    {% for lesson in course.lessons %}
+                        <!-- <p id="{{lesson.slug}}">{{lesson.title}}</p> -->
+                        <li>
+                            <a href="{{lesson.get_absolute_url}}" >{{lesson.title}}</a>
+                        </li>
+                        
+
+                    {% endfor %}
+              </ol>
+            
+    
+          </div>
+      </div>
+        
+
+  
+
+    <!-- <div id="SaveRoomss"></div> -->
+  </div>
+    
+  
+  
+{% endblock content %}
+
+<!-- 
+    <script>
+       
+        $(document).ready(function(){
+            var urls = {
+                slug : '{{lesson.get_absolute_url}}',
+                title:'{{lesson.slug}}',
+            } 
+            var i = 0
+            $("#"+urls.title).click(function(){
+                i++
+                
+                $.ajax({
+                    url:urls.slug,
+                    success:function(response){
+                        $("#SaveRoomss").html(response)
+                    }
+                })
+            });
+        });
+    </script> -->

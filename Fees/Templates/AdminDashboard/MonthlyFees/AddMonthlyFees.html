@@ -1,0 +1,92 @@
+{% extends 'navbar.html' %}
+
+
+{% block content %}
+{% load static %}
+     <!-- Begin Page Content -->
+     <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="bg-gradient-primary" style="border-radius: 1rem; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+            <h1 class="h3 mb-2 text-white text-center">Anual Admission Fees </h1>
+            <p class="mb-4"></a></p>
+        </div>
+      
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+
+
+          </div>
+          <div class="card-body">
+
+            <div id="SaveRooms" class="container text-center"> </div>
+
+            <form class="mt-5"  id="fileUploadForm" name="fm">
+                {% csrf_token %}
+                <div class="row" style="width: 60%;margin: 0 auto;">
+                        <div class="form-group col-sm-6 ">
+                            <label for="sel1">Student Id:</label>
+                            <input class="form-control" id="StudentId" name="StudentId" onkeyup="checkID()"/>
+                            <span id='ErrorStudentId'style="color: red;"></span>
+                        </div>
+                        
+                        <div class="form-group col-sm-6 ">
+                            <label >Payment Date:</label>
+                            <input type="date" class="form-control" id="AdmissionDate"  name="AdmissionDate"  onkeyup="AdmissionDates()">
+                            <span id="ErrorAdmissionDate" style="color: red;"></span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label >Student Name:</label>
+                            <input type="text" class="form-control" id="StudentName"  name="StudentName" onkeyup="StudentNames()">
+                            <span id="ErrorStudentName" style="color: red;"></span>
+                        </div>
+                        
+                        <div class="form-group col-sm-6">
+                            <label for="sel1">Class:</label>
+                            <input type="text" class="form-control" id="Class" name="Class" onkeyup="checkClass()"/>
+                            <span id='ErrorClass'style="color: red;"></span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="sel1">Section:</label>
+                            <input type="text" class="form-control" id="Section" name="Section" onkeyup="checkSection()"/>
+                            <span id='ErrorSection'style="color: red;"></span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="sel1">Fees Type:</label>
+                            <select type="text" class="form-control" id="FeesType" name="FeesType" onkeyup="FeesTypes()">
+                                <option value="Full">Full</option>
+                                <option value="Half">Half</option>
+                            </select>
+                            <span id='ErrorFeesType'style="color: red;"></span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="sel1">Special:</label>
+                            <input type="number" class="form-control" id="Special" name="Special" onkeyup="Specials()"/>
+                            <span id='ErrorSpecial'style="color: red;"></span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="sel1">Paid:</label>
+                            <input type="number" class="form-control" id="Paid" name="Paid" onkeyup="Paids()"/>
+                            <span id='ErrorPaid'style="color: red;"></span>
+                        </div>
+                        
+                        <button type="submit" name="submit" id ="SubmitRoom" class="btn btn-primary mt-5 text-center col-12" onclick="return check()">Submit</button>
+                  </div>
+                  
+              </form>
+        
+            
+          </div>
+        </div>
+
+      </div>
+      <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+    
+    <script src="{% static './admin/js/admin-monthlyfeesadd.js' %}"></script>
+
+{% endblock %}
